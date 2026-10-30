@@ -1,0 +1,33 @@
+### WWTP Dataset (External Target Domain)
+
+The Wastewater Treatment Plant (WWTP) dataset consists of high-resolution RGB images containing microplastic particles collected in a wastewater treatment plant environment. The dataset was obtained from the WWTP dataset bundle used in this project.
+
+**Dataset details:**
+- Original images: 2,010
+- Native image resolution: 3,840 × 2,160 pixels
+- Image format: JPG
+- Annotation format: COCO-style bounding boxes and polygon segmentations
+- Total annotated microplastic objects: 4,557
+- Images with annotated objects: 2,004
+- Images with empty annotations: 6
+
+**Preprocessing and usage:**
+
+Unlike the Beach dataset, WWTP images have a much higher native resolution. Therefore, they are processed using a tiled inference approach. Each image is divided into 512 × 512 pixel tiles with a stride of 384 pixels, resulting in 128-pixel overlaps between adjacent tiles.
+
+The polygon annotations are converted into binary segmentation masks for evaluation at the original image resolution.
+
+**Dataset partitioning:**
+- Training: 1,406 images
+- Validation: 302 images
+- Testing: 302 images
+
+**Purpose:**
+
+The WWTP dataset serves as an independent external evaluation dataset to examine how well models trained on beach sand images generalize to a different environmental domain.
+
+In the unsupervised domain adaptation experiments, only the 1,406 WWTP training images are used as unlabeled target-domain data. Their annotations are not accessed during adaptation. The validation and testing annotations are reserved for final external evaluation.
+
+**How to use:**
+
+Download and extract the WWTP dataset bundle containing the JPG images and their corresponding PNG masks. Preserve the original image resolution and use the tiled preprocessing and inference pipeline provided in the project notebooks. For external evaluation, use the corresponding annotations only after the model has been frozen.
