@@ -1,0 +1,26 @@
+### Beach Dataset (Source Domain)
+
+The Beach dataset consists of RGB images of beach sand containing microplastic particles, along with corresponding pixel-level binary segmentation masks. It was obtained from a Kaggle dataset (recovered through the Kaggle dataset bundle used in this project).
+
+**Dataset details:**
+- Original images: 1,570
+- Image resolution: 256 × 256 pixels
+- Image format: RGB
+- Annotation type: Pixel-level binary segmentation masks
+- Mask values: 0 (background) and 255 (microplastic foreground)
+- Images with annotated microplastics: 1,130
+- Images with empty annotations: 440
+
+**Preprocessing and usage:**
+
+The images and corresponding masks are resized to 512 × 512 pixels. Images use bilinear interpolation, while masks use nearest-neighbour interpolation to preserve their binary labels. The masks are subsequently binarized for model training.
+
+For the final leakage-controlled dataset split, 790 annotated-positive images are used for training, 169 for validation, and 169 for testing. The split is performed at the inferred parent-image level to prevent related image patches from appearing across different partitions.
+
+**Purpose:**
+
+This dataset serves as the primary supervised training dataset. It is used to train deep learning segmentation models, including U-Net with ResNet-based encoders, to identify and segment microplastic particles in beach sand images.
+
+**How to use:**
+
+Download the original dataset from its Kaggle source, extract the image and mask folders, and organize them into the required directory structure. Apply the preprocessing steps and use the provided training, validation, and testing partitions. Refer to the project notebooks for the implementation.
